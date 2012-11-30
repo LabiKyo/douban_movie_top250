@@ -1,0 +1,21 @@
+{
+  "name": "d_movie_top250",
+  "version": "0.0.1",
+  "author": "Labi Kyo <labikyo@gmail.com>",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:labikyo/douban_movie_top250.git"
+  },
+  "dependencies": {
+    "underscore": "*",
+    "node.io": "*",
+    "coffee-script": "*"
+  },
+  "devDependencies": {
+  },
+  "engine": {
+    "node": ">=0.8.1"
+  }
+}
