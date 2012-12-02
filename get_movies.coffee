@@ -11,12 +11,17 @@ methods =
   input: input
 
   output: (urls) ->
-    {Movie} = require './models'
+    {Movie, Counter} = require './models'
     _(urls)
       .each (url) ->
-        Movie.create {_id: regex.exec(url)[1]}
-        , (err, movie) ->
-          err
+        Counter.get_and_increase 'movie', (err, counter) ->
+          Movie.findByIdAndUpdate counter.last
+          ,
+            douban_id: regex.exec(url)[1]
+          ,
+            upsert: true
+          , (err, movie) ->
+            err
 
   run: (url) ->
     @getHtml url, (err, $, data) ->
