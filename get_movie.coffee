@@ -4,7 +4,7 @@ _ = require 'underscore'
 options = require './options'
 
 methods =
-  input: 'links.txt'
+  #input: 'links.txt'
   output: 'data.json'
   run: (url) ->
     @getHtml url, (err, $, data) ->
