@@ -1,6 +1,8 @@
 io = require 'node.io'
 _ = require 'underscore'
 
+options = require './options'
+
 methods =
   input: 'links.txt'
   output: 'data.json'
@@ -23,10 +25,5 @@ methods =
         average: $('.rating_num').text
         ratings: ratings
       @emit output
-
-options =
-  timeout: 20
-  wait: 1
-  auto_retry: true
 
 exports.job = new io.Job options, methods

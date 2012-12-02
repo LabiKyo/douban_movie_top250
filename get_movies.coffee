@@ -1,5 +1,7 @@
 io = require 'node.io'
 
+options = require './options'
+
 # base url
 url = 'http://movie.douban.com/top250'
 input = []
@@ -19,8 +21,5 @@ methods =
         output.push container.attribs.href
 
       @emit output
-
-options =
-  timeout: 20
 
 exports.job = new io.Job options, methods
