@@ -2,4 +2,4 @@
 
 ## How to scrape
 
-Just run cake to see
+Just run slake to see

@@ -12,7 +12,7 @@
     "underscore": "*",
     "node.io": "*",
     "mongoose": "*",
-    "coffee-script": "*"
+    "LiveScript": "*"
   },
   "devDependencies": {
   },
