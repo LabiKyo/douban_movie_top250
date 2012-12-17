@@ -1,16 +1,22 @@
-io = require \node.io
-mongo = require \mongoose
+require! {
+  io: \node.io
+  mongo: \mongoose
 
-# node.io jobs
-get-movies = require \./get-movies .job
-
-{open-db, close-db, handle-err, tint} = require \./helper
+  # jobs
+  get-movies: \./get-movies .job
+  get-review-count: \./get-review-count .job
+  # helper
+  \./helper .handle-err
+  \./helper .open-db
+  \./helper .close-db
+  \./helper .tint
+}
 
 # tasks
 task \get:movies, "Get movies' url", ->
   open-db!
 
-  {Counter} = require \./model
+  require! \./model .Counter
 
   err, counter <- Counter.findByIdAndUpdate 'movie', {last: 0}, {upsert: true, select: \last}
   handle-err err
@@ -18,4 +24,10 @@ task \get:movies, "Get movies' url", ->
   err <- io.start get-movies, {}
   handle-err err, success: -> console.log tint 'Success!'
 
+  close-db!
+
+task \get:review:count, "Get count of movie's review", ->
+  open-db!
+  err <- io.start get-review-count, {}
+  handle-err err, success: -> console.log tint 'Success!'
   close-db!
